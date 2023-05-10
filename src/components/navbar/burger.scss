@@ -1,0 +1,63 @@
+@import "../../main.scss";
+
+.burgerMainDiv {
+  display: none;
+}
+
+@media screen and (max-width: $mobile-width) {
+  .burgerMainDiv {
+    height: 48px;
+    display: flex;
+    justify-content: space-around;
+    flex-flow: column nowrap;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    margin: 20px 0px 0px 20px;
+    padding: 4px;
+    background-color: $light-color;
+
+    div {
+      width: 40px;
+      height: 8px;
+      background-color: $dark-color;
+      border-radius: 10px;
+      transform-origin: 1px;
+      transition: all 0.3s linear;
+    }
+
+    &.open {
+      div {
+        background-color: $dark-color;
+        &:nth-child(1) {
+          transform: rotate(45deg);
+          width: 46px;
+        }
+        &:nth-child(2) {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        &:nth-child(3) {
+          transform: rotate(-45deg);
+          width: 46px;
+        }
+      }
+    }
+
+    &.close {
+      div {
+        &:nth-child(1) {
+          transform: rotate(0);
+        }
+        &:nth-child(2) {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        &:nth-child(3) {
+          transform: rotate(0);
+        }
+      }
+    }
+  }
+}

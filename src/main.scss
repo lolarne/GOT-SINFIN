@@ -3,6 +3,35 @@ $dark-color: black;
 $primary-color: pink;
 $mobile-width: 980px;
 
-.app{
-    background-color: $light-color;
+*,
+html {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  background-color: $light-color;
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    ul {
+      width: 90%;
+
+      li {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 16px 8px;
+
+        &:hover {
+          cursor: pointer;
+          background-color: $primary-color;
+        }
+      }
+    }
+  }
 }

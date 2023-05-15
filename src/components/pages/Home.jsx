@@ -99,7 +99,7 @@ const Home = () => {
 
     const option2 = {
       title: {
-        text: "Gender of 50 dead character",
+        text: "Gender of 50 dead characters",
         left: "center",
         textStyle: {
           color: "white",

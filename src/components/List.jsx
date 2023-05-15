@@ -1,13 +1,20 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { DisplayKey, urlToLink } from "./hooks.jsx";
 
-const List = ({ root, pageNbr, pageSize }) => {
+/**
+ * List component
+ * @param {string} root - "characters" OR "books" OR "houses"
+ * @param {number} pageNbr
+ * @param {number} pageSize - max: 50
+ * @param {array[string]} dataToDisplay - key name of the data to display
+ * @returns
+ */
+
+const List = ({ root, pageNbr, pageSize, dataToDisplay }) => {
   const [list, setList] = useState([]);
   const [loaded, setLoaded] = useState(false);
-
-  let link = `https://www.anapioficeandfire.com/api/${root}/`;
-  let linkLength = link.length;
 
   useEffect(() => {
     (async () => {
@@ -16,7 +23,6 @@ const List = ({ root, pageNbr, pageSize }) => {
           const res = await axios.get(
             `https://www.anapioficeandfire.com/api/${root}?page=${pageNbr}&pageSize=${pageSize}`
           );
-          console.log({ RES: res.data });
           if (res.data) {
             setList(res.data);
             setLoaded(false);
@@ -32,14 +38,15 @@ const List = ({ root, pageNbr, pageSize }) => {
     <div className="list">
       <ul>
         <li>
-          <p>NAME</p>
-          <p>CULTURE</p>
+          {dataToDisplay.length &&
+            dataToDisplay.map((title, titleKey) => (
+              <p key={titleKey}>{title.toUpperCase()}</p>
+            ))}
         </li>
-        {list.map((item) => (
-          <Link to={`/characters/${item.url.slice(linkLength)}`}>
+        {list.map((item, itemKey) => (
+          <Link to={urlToLink(item.url, root)} key={itemKey}>
             <li>
-              <p>{item.name ? item.name : "Unknown"}</p>
-              <p>{item.culture ? item.culture : "Unknown"}</p>
+              <DisplayKey obj={item} keys={dataToDisplay} />
             </li>
           </Link>
         ))}

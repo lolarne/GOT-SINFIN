@@ -26,8 +26,6 @@ const CharacterList = () => {
     }
   };
 
-  // console.log({DATA: searchResult})
-
   return (
     <div className="page">
       <h1>Characters</h1>
@@ -40,7 +38,12 @@ const CharacterList = () => {
       </form>
       <div onClick={() => research()}>envoyer</div>
       {searchResult.length && <p>name: {searchResult[0].name}</p>}
-      <List root="characters" pageNbr={page} pageSize="20" />
+      <List
+        root="characters"
+        pageNbr={page}
+        pageSize="20"
+        dataToDisplay={["name", "culture"]}
+      />
       <Pagination count={107} page={page} onChange={handleChange} />
     </div>
   );

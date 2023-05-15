@@ -5,14 +5,15 @@ const BooksList = () => {
   const [pageSize, setPageSize] = React.useState(5);
 
   return (
-    <div>
+    <div className="page">
+      <h1>BOOKS</h1>
       <List
         root="books"
         pageNbr="1"
         pageSize={pageSize}
         dataToDisplay={["name", "isbn"]}
       />
-      <button onClick={() => setPageSize(pageSize + 5)}>Voir plus</button>
+      <button onClick={() => setPageSize(pageSize + 5)}>See more</button>
     </div>
   );
 };

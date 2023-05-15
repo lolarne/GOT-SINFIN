@@ -37,7 +37,7 @@ const List = ({ root, pageNbr, pageSize, dataToDisplay }) => {
   return (
     <div className="list">
       <ul>
-        <li>
+        <li id="header">
           {dataToDisplay.length &&
             dataToDisplay.map((title, titleKey) => (
               <p key={titleKey}>{title.toUpperCase()}</p>

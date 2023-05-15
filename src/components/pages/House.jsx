@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import "../../styles/house.scss";
 import { urlToLink } from "../hooks.jsx";
 
 function House() {
@@ -38,21 +39,23 @@ function House() {
   }, [loaded, id]);
 
   return (
-    <div>
-      <h1>{house.name.length ? house.name : "Unamed house"}</h1>
-      {house.coatOfArms.length && (
-        <p>Description of the coat of arms: {house.coatOfArms}</p>
-      )}
-      <p>
-        Current Lord:{" "}
-        {house.currentLord.length ? (
-          <Link to={urlToLink(house.currentLord, "characters")}>
-            See who it is
-          </Link>
-        ) : (
-          "No one, you should apply for this job!"
+    <div className="page house">
+      <div className="card">
+        <h1>{house.name.length ? house.name : "Unamed house"}</h1>
+        {house.coatOfArms.length && (
+          <p>Description of the coat of arms: {house.coatOfArms}</p>
         )}
-      </p>
+        <p>
+          Current Lord:{" "}
+          {house.currentLord.length ? (
+            <Link to={urlToLink(house.currentLord, "characters")}>
+              See who it is
+            </Link>
+          ) : (
+            "No one, you should apply for this job!"
+          )}
+        </p>
+      </div>
       <p>
         This house was founded{" "}
         {house.founded.length
@@ -75,30 +78,35 @@ function House() {
           ? `Despite its successes, the house died out ${house.diedOut}.`
           : ""}
       </p>
-      <p>
-        Famous for:
-        <ul>
-          <li>
+      <p>Famous for:</p>
+      <ul>
+        <li>
+          <p>
             Its words: "
             {house.words.length
               ? house.words
               : "Hello world! (Sorry we do not have this information)"}
             "
-          </li>
-          <li>
+          </p>
+        </li>
+        <li>
+          <p>
+            {" "}
             Its titles:{" "}
             {house.titles[0].length
               ? house.titles.map((title, titleKey) => <> {title};</>)
               : "well... at least they exist!"}
-          </li>
-          <li>
+          </p>
+        </li>
+        <li>
+          <p>
             Its seats:{" "}
             {house.seats[0].length
               ? house.seats.map((seat, seatKey) => <> {seat};</>)
               : "chairs, stools, etc."}
-          </li>
-        </ul>
-      </p>
+          </p>
+        </li>
+      </ul>
     </div>
   );
 }

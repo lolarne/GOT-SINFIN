@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
 /**
  * This function, urlToLink, returns the path to the selected item's page
  * @param {string} url - api url
@@ -6,8 +9,10 @@
  */
 export const urlToLink = (url, root) => {
   let urlLength = `https://www.anapioficeandfire.com/api/${root}/`.length;
-  let newLink = url.slice(urlLength);
-  return `/${root}/${newLink}`;
+  if (url.length) {
+    let newLink = url.slice(urlLength);
+    return `/${root}/${newLink}`;
+  }
 };
 
 /**

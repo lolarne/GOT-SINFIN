@@ -1,37 +1,112 @@
+$dark-color: #1b1f22;
 $light-color: white;
-$dark-color: black;
-$primary-color: pink;
+$primary-color: #8e8ceb;
+
 $mobile-width: 980px;
+
+$drop-shadow: 4px 4px 12px rgb(0, 0, 0), -4px -4px 12px #4f4f4f;
+$inner-shadow: inset 4px 4px 12px rgb(0, 0, 0), inset -4px -4px 12px #4f4f4f;
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("./assets/Montserrat/static/Montserrat-Regular.ttf");
+}
 
 *,
 html {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  color: $light-color;
+  font-family: "Montserrat";
 }
 
 .app {
-  background-color: $light-color;
+  background-color: $dark-color;
+
+  p {
+    font-size: 18px;
+    padding: 8px 0;
+  }
+
+  a {
+    color: $light-color;
+    text-decoration: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 
   .list {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
+    width: 100%;
+
     ul {
-      width: 90%;
+      width: 60%;
+      margin: 4em 0;
+      box-shadow: $drop-shadow;
 
       li {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        padding: 16px 8px;
+        padding: 24px 16px;
 
         &:hover {
           cursor: pointer;
-          background-color: $primary-color;
+          box-shadow: $inner-shadow;
+        }
+
+        &#header {
+          box-shadow: $drop-shadow;
+
+          &:hover {
+            cursor: auto;
+          }
         }
       }
+    }
+  }
+
+  .page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    width: 100vw;
+    padding: 80px 0;
+  }
+
+  button,
+  .button {
+    background-color: transparent;
+    font-size: 24px;
+    padding: 8px 24px;
+    border: none;
+    box-shadow: $drop-shadow;
+
+    &:hover {
+      box-shadow: $inner-shadow;
+      cursor: pointer;
+    }
+  }
+
+  .searchBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 0;
+
+    input {
+      padding: 16px 24px;
+      margin-right: 16px;
+      background-color: transparent;
+      border: none;
+      box-shadow: $inner-shadow;
+      font-size: 18px;
     }
   }
 }

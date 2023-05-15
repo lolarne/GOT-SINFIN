@@ -1,0 +1,35 @@
+@import "../main.scss";
+
+.character {
+  .profile-card {
+    width: 100%;
+    padding: 16px 24px;
+    box-shadow: $inner-shadow;
+
+    h1,
+    p {
+      padding: 8px 0;
+    }
+  }
+
+  .profile-description {
+    padding: 4em 1em;
+
+    p {
+      padding-top: 24px;
+    }
+
+    .listing {
+      margin: 48px 0;
+      a {
+        box-shadow: $drop-shadow;
+        padding: 16px 24px;
+        margin: 8px;
+
+        &:hover {
+          box-shadow: $inner-shadow;
+        }
+      }
+    }
+  }
+}

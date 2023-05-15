@@ -1,15 +1,16 @@
+import Pagination from "@mui/material/Pagination";
 import React from "react";
 import List from "../List";
-import Pagination from "@mui/material/Pagination";
 
 function HousesList() {
-    const [page, setPage] = React.useState(1);
-    const handleChange = (event, value) => {
-      setPage(value);
-    };
+  const [page, setPage] = React.useState(1);
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
 
   return (
-    <div>
+    <div className="page">
+      <h1>HOUSES</h1>
       <List
         root="houses"
         pageNbr={page}

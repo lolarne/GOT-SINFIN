@@ -1,6 +1,7 @@
 import axios from "axios";
 import ReactEcharts from "echarts-for-react";
 import React, { useEffect, useState } from "react";
+import "../../styles/home.scss";
 
 const Home = () => {
   const [books, setBooks] = useState([]);
@@ -76,6 +77,9 @@ const Home = () => {
       title: {
         text: "Number of author per book",
         left: "center",
+        textStyle: {
+          color: "white",
+        },
       },
       tooltip: {
         trigger: "item",
@@ -86,6 +90,9 @@ const Home = () => {
           type: "pie",
           radius: "50%",
           data: statBooks(),
+          label: {
+            color: "white",
+          },
         },
       ],
     };
@@ -94,6 +101,9 @@ const Home = () => {
       title: {
         text: "Gender of 50 dead character",
         left: "center",
+        textStyle: {
+          color: "white",
+        },
       },
       tooltip: {
         trigger: "item",
@@ -104,13 +114,21 @@ const Home = () => {
           type: "pie",
           radius: "50%",
           data: statCharacters(),
+          label: {
+            color: "white",
+          },
         },
       ],
     };
 
     return (
-      <div>
-        <ReactEcharts option={option} />
+      <div className="home">
+        <h1>Welcome to your Game Of Thrones</h1>
+        <p>
+          You can find the list of all the characters, the different houses and
+          all the books.
+        </p>
+        <ReactEcharts option={option} className="chart" />
         <ReactEcharts option={option2} />
       </div>
     );

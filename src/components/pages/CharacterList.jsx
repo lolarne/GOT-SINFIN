@@ -1,13 +1,16 @@
-import React, { useState } from "react";
-import List from "../List";
-import axios from "axios";
 import Pagination from "@mui/material/Pagination";
+import axios from "axios";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import List from "../List";
+import { urlToLink } from "../hooks.jsx";
 
 const CharacterList = () => {
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => {
     setPage(value);
   };
+  
   const [keyword, setKeyword] = useState("");
   const [searchResult, setSearchResult] = useState({});
 
@@ -16,10 +19,11 @@ const CharacterList = () => {
       const res = await axios.get(
         `https://www.anapioficeandfire.com/api/characters?name=${keyword}`
       );
-      if (res.data) {
-        setSearchResult(res.data);
+
+      if (res.data[0]) {
+        setSearchResult(res.data[0]);
       } else {
-        setSearchResult("No character found or maybe forgotten...");
+        setSearchResult({ name: "No character found or maybe forgotten..." });
       }
     } catch (err) {
       console.log(err);
@@ -27,17 +31,28 @@ const CharacterList = () => {
   };
 
   return (
-    <div className="page">
-      <h1>Characters</h1>
-      <form>
-        <input
-          type="text"
-          value={keyword}
-          onChange={(e) => setKeyword(e.target.value)}
-        />
-      </form>
-      <div onClick={() => research()}>envoyer</div>
-      {searchResult.length && <p>name: {searchResult[0].name}</p>}
+    <div className="page center">
+      <h1>CHARACTERS</h1>
+      <div className="searchBar">
+        <form>
+          <input
+            type="text"
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+          />
+        </form>
+        <button onClick={() => research()}>Search</button>
+      </div>
+      {keyword.length && searchResult.url ? (
+        <Link to={urlToLink(searchResult.url, "characters")} className="button">
+          <p>
+            {searchResult.name.length ? searchResult.name : "Unknown"} from{" "}
+            {searchResult.culture.length ? searchResult.culture : "somewhere"}
+          </p>
+        </Link>
+      ) : (
+        searchResult.name
+      )}
       <List
         root="characters"
         pageNbr={page}

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import "../../styles/character.scss";
 import { urlToLink } from "../hooks.jsx";
 
 const Character = () => {
@@ -33,8 +34,6 @@ const Character = () => {
             `https://www.anapioficeandfire.com/api/characters/${id}`
           );
           if (res.data) {
-            console.log({ RES: res.data });
-
             setProfile(res.data);
             setLoaded(false);
           }
@@ -46,7 +45,7 @@ const Character = () => {
   }, [loaded, id]);
 
   return (
-    <div>
+    <div className="page character">
       <div className="profile-card">
         <h1>{profile.name ? profile.name : "Who knows"}</h1>
         <p>
@@ -66,7 +65,7 @@ const Character = () => {
       </div>
 
       <div className="profile-description">
-        <p className="">
+        <p>
           This character is born on{" "}
           {profile.born
             ? profile.born
@@ -94,16 +93,16 @@ const Character = () => {
             : "a place on the map, it has to be somewhere"}
           .
         </p>
-        <p>
-          You can find this amazing character on the following book-s:{" "}
-          {profile.books.length
+        <p>You can find this amazing character on the following book-s: </p>
+        <div className="listing">
+          {profile.books.length && profile.books[0].length
             ? profile.books.map((book, bookKey) => (
                 <Link to={urlToLink(book, "books")} key={bookKey}>
-                  livre {bookKey}
+                  livre {bookKey + 1}
                 </Link>
               ))
             : "wait who is this character?"}
-        </p>
+        </div>
         <p>
           You can find this character on the TV show{" "}
           {profile.tvSeries.length

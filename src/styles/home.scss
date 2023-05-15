@@ -1,0 +1,15 @@
+@import "../main.scss";
+
+.home {
+  min-height: 100vh;
+  padding-top: 56px;
+  text-align: center;
+
+  h1 {
+    padding-bottom: 1em;
+  }
+
+  .chart {
+    padding: 2em 0;
+  }
+}
